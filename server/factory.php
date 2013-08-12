@@ -9,7 +9,7 @@ class Factory {
     }
 
     function index() {
-        return new Default_Controller();
+        return new Home_Controller(new Home_View(new Mustache_Engine()));
     }
 }
 ?>

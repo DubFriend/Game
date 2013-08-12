@@ -52,4 +52,51 @@ abstract class Controller {
         );
     }
 }
+
+abstract class View {
+
+    private $templator;
+
+    function __construct($templator) {
+        $this->templator = $templator;
+    }
+
+    abstract protected function body_template();
+
+    function render(array $data = array()) {
+        return $this->templator->render($this->page_template(), $data);
+    }
+
+    private function page_template() {
+        return '' .
+        '<!DOCTYPE html>' .
+        '<html lang="en">' .
+            $this->head_template() .
+            '<body>' .
+                $this->body_template() .
+                $this->js_template() .
+            '</body>' .
+        '</html>';
+    }
+
+    private function head_template() {
+        return '' .
+        '<head>' .
+            '<meta charset="utf-8">' .
+            '<title>{{title}}</title>' .
+            '{{#css}}' .
+                '<link rel="stylesheet" href="{{.}}">' .
+            '{{/css}}' .
+            '<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">' .
+            '<link rel="icon" href="favicon.ico" type="image/x-icon">' .
+        '</head>';
+    }
+
+    private function js_template() {
+        return '' .
+        '{{#js}}' .
+            '<script src="{{.}}"></script>' .
+        '{{/js}}';
+    }
+}
 ?>

@@ -7,7 +7,7 @@ require ROOT . "lib/authentication/registration.php";
 require ROOT . "factory.php";
 require ROOT . "router.php";
 require ROOT . "base.php";
-require ROOT . "default_controller.php";
+require ROOT . "home.php";
 
 Mustache_Autoloader::register();
 
